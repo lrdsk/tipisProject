@@ -1,6 +1,7 @@
 package org.example.tipisProjectServer.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ public class House {
     private Date dateOfPublication;
 
     @Column(name="price")
+    @Min(value=1, message = "Price need to be more than 0")
     private int price;
 
     @Column(name="level")
