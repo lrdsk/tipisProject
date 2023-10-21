@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface HouseService {
     List<HouseDto> findAll();
     HouseDto findOne(int id);
-    void save(HouseDto houseDto);
+    void save(HouseDto[] houseDto);
     void deleteById(int id);
 }

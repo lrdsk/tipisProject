@@ -36,8 +36,10 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     @Transactional
-    public void save(HouseDto houseDto) {
-        houseRepository.save(houseMapper.toEntity(houseDto));
+    public void save(HouseDto[] houseDtoList) {
+        for(HouseDto houseDto : houseDtoList){
+            houseRepository.save(houseMapper.toEntity(houseDto));
+        }
     }
 
     @Override

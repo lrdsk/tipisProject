@@ -1,5 +1,7 @@
 package org.example.tipisProjectServer.restControllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.example.tipisProjectServer.dto.HouseDto;
 import org.example.tipisProjectServer.serviceImpl.HouseServiceImpl;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name="Контроллер для необработанных данных о домах", description = "Методы для работы с данными (получение и отправка)")
 public class HouseController {
     private final HouseServiceImpl houseService;
     @Autowired
@@ -25,12 +28,14 @@ public class HouseController {
     }
 
     @GetMapping("/houses")
+    @Operation(summary = "Получение всех записей о домах")
     public List<HouseDto> getAllHouses(){
         return houseService.findAll();
     }
 
     @PostMapping("/houses")
-    public HttpEntity<HttpStatus> addNewHouse(@RequestBody @Valid HouseDto houseDto, BindingResult bindingResult){
+    @Operation(summary = "Отправка новых записей о домах")
+    public HttpEntity<HttpStatus> addNewHouse(@RequestBody @Valid HouseDto[] houseDtoList, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             StringBuilder errorMsg = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
@@ -41,9 +46,10 @@ public class HouseController {
             }
             throw new HouseNotAddedException(errorMsg.toString());
         }
-        houseService.save(houseDto);
+        houseService.save(houseDtoList);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
 
     @ExceptionHandler
     public HttpEntity<HouseError> handleException(HouseNotAddedException houseNotAddedException){
