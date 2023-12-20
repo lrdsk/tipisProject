@@ -17,5 +17,4 @@ public class HouseDto {
     private int level;
     private int rooms;
     private BuildingType buildingType;
-
 }

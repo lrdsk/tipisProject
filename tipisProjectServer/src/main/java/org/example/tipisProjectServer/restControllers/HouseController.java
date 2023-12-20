@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.example.tipisProjectServer.dto.HouseDto;
 import org.example.tipisProjectServer.serviceImpl.HouseServiceImpl;
-import org.example.tipisProjectServer.util.HouseError;
+import org.example.tipisProjectServer.util.HouseErrorHandler;
 import org.example.tipisProjectServer.util.HouseNotAddedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -52,8 +52,8 @@ public class HouseController {
 
 
     @ExceptionHandler
-    public HttpEntity<HouseError> handleException(HouseNotAddedException houseNotAddedException){
-        HouseError response = new HouseError(
+    public HttpEntity<HouseErrorHandler> handleException(HouseNotAddedException houseNotAddedException){
+        HouseErrorHandler response = new HouseErrorHandler(
                 houseNotAddedException.getMessage()
         );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

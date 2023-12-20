@@ -3,10 +3,10 @@ package org.example.tipisProjectServer.util;
 import lombok.Data;
 
 @Data
-public class HouseError {
+public class HouseErrorHandler {
     private String msg;
 
-    public HouseError(String msg) {
+    public HouseErrorHandler(String msg) {
         this.msg = msg;
     }
 }
