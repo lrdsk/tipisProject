@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet logicalFilePath="2023-12-23-create-table-house"
+               id="2023-12-23-create-table-house" author="postgres">
+        <createTable tableName="house">
+            <column name="id" type="BIGINT"  autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="date_of_publication" type="date"/>
+            <column name="price" type="int"/>
+            <column name="level" type="int"/>
+            <column name="rooms" type="int"/>
+            <column name="bilding_type" type="int"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

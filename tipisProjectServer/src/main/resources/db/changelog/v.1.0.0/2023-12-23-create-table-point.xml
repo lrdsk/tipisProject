@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet logicalFilePath="2023-12-23-create-table-point"
+               id="2023-12-23-create-table-point" author="postgres">
+        <createTable tableName="point">
+            <column name="point_id" type="BIGINT"  autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="point_value" type="real"/>
+            <column name="graphic_id" type="int"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="point" baseColumnNames="graphic_id"
+                                 constraintName="point_graphic_id_graphic_graphic_id"
+                                 referencedTableName="graphic" referencedColumnNames="graphic_id" onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
